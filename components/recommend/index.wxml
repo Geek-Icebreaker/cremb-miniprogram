@@ -9,6 +9,9 @@
          <view class='pictrue'><image src='{{item.image}}'></image></view>
          <view class='name line1'>{{item.store_name}}</view>
          <view class='money font-color'>￥<text class='num'>{{item.price}}</text></view>
+         <view class='panel-bottom' wx:if="{{item.brokerage_price}}">
+            <text class="brokerage_price">赚￥ {{item.brokerage_price}}</text>
+         </view>
       </navigator>
    </view>
 </view>

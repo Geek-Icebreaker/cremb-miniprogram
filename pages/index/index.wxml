@@ -7,7 +7,7 @@
               <swiper-item>
                 <navigator url='{{item.url}}' class='slide-navigator acea-row row-between-wrapper' hover-class='none'>
                   <image src="{{item.pic}}" class="slide-image"/>
-                </navigator>                
+                </navigator>
               </swiper-item>
             </block>
         </swiper>
@@ -22,7 +22,7 @@
           <view class='pictrue'><image src='{{item.pic}}'></image></view>
           <view>{{item.name}}</view>
         </navigator>
-      </block> 
+      </block>
     </view>
     <view class='news acea-row row-between-wrapper' wx:if="{{itemNew.length}}">
        <view class='pictrue'><image src='/images/news.png'></image></view>
@@ -46,7 +46,7 @@
                         </navigator>
                     </swiper-item>
                   </block>
-              </swiper> 
+              </swiper>
        </view>
     </view>
     <view class='specialArea acea-row row-between-wrapper' wx:if="{{activityList.length}}">
@@ -58,7 +58,7 @@
              <view class='infor'>{{item.info}}</view>
           </view>
        </navigator>
-      </block> 
+      </block>
        <view class='list acea-row row-column-between'>
           <block wx:for="{{activityList}}" wx:key>
             <navigator class='item' url='{{item.link}}' wx:if="{{index > 0}}">
@@ -68,7 +68,7 @@
                   <view class='infor'>{{item.info}}</view>
               </view>
             </navigator>
-          </block>  
+          </block>
        </view>
     </view>
     <view class='wrapper' wx:if="{{fastList.length}}">
@@ -88,7 +88,7 @@
                     </view>
                     <view class='pro-info line1'>{{item.cate_name}}</view>
                   </navigator>
-              </block>  
+              </block>
            </scroll-view>
         </view>
     </view>
@@ -112,7 +112,7 @@
                 </block>
             </swiper>
        </view>
-       <goodList bastList="{{bastList}}"></goodList>
+       <goodList bastList="{{bastList}}" userInfo="{{userInfo}}"></goodList>
     </view>
     <view class='hotList' wx:if="{{likeInfo.length}}">
        <view class='hot-bg'>
@@ -132,14 +132,19 @@
               </view>
               <view class='name line1'>{{item.store_name}}</view>
               <view class='money font-color'>￥<text class='num'>{{item.price}}</text></view>
+              <!--<view class='money font-color'><text class='num'>赚￥ {{item.price}}</text></view>-->
+                <!-- wx:if="{{item.brokerage_price}}"-->
+               <view class='panel-bottom' wx:if="{{item.brokerage_price}}">
+                   <text class="brokerage_price">赚￥ {{item.brokerage_price}}</text>
+               </view>
             </navigator>
-          </block>  
+          </block>
        </view>
     </view>
     <view class='adver' wx:if="{{lovelyBanner.img}}">
       <block>
         <image src='{{lovelyBanner.img}}'></image>
-      </block>  
+      </block>
     </view>
      <view class='wrapper' wx:if="{{firstList.length}}">
        <view class='title acea-row row-between-wrapper'>
@@ -158,8 +163,11 @@
                     </view>
                     <view class='pro-info line1'>{{item.store_name}}</view>
                     <view class='money font-color'>￥{{item.price}}</view>
+                     <view class='panel-bottom' wx:if="{{item.brokerage_price}}">
+                         <text class="brokerage_price">赚￥ {{item.brokerage_price}}</text>
+                     </view>
                   </navigator>
-              </block>  
+              </block>
            </scroll-view>
         </view>
     </view>

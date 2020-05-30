@@ -1,7 +1,7 @@
 // pages/collectionGoods/index.js
 
 import { getCollectUserList, getProductHot, collectDel} from '../../api/store.js';
-
+import { brokerageCalcuHandle } from '../../utils/util'
 
 const app=getApp();
 Page({
@@ -79,6 +79,7 @@ Page({
   get_host_product: function () {
     var that = this;
     getProductHot().then(res=>{
+      res.data = brokerageCalcuHandle(res.data)
       that.setData({ host_product: res.data });
     });
   },

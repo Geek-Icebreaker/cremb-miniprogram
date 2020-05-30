@@ -7,5 +7,6 @@
 .promotionGood .item .text .name{font-size:30rpx;color:#333;}
 .promotionGood .item .text .sp-money{margin:34rpx 0 20rpx 0;}
 .promotionGood .item .text .sp-money .moneyCon{padding:0 18rpx;background-color:red;height:46rpx;line-height:46rpx;background-image:linear-gradient(to right,#ff6248 0%,#ff3e1e 100%);font-size:20rpx;color:#fff;border-radius:24rpx 3rpx 24rpx 3rpx;}
+.promotionGood .item .text .sp-money .num2{font-size:22rpx;color:black;font-weight:normal;padding: 5rpx;margin:-2rpx 0 0 40rpx;background-color: yellow;}
 .promotionGood .item .text .sp-money .moneyCon .num{font-size:24rpx;}
 .promotionGood .item .text .money{text-decoration:line-through;}

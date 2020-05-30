@@ -1,4 +1,5 @@
 import { getGroomList } from '../../api/store.js';
+import { brokerageCalcuHandle } from "../../utils/util";
 
 const app = getApp();
 Page({
@@ -55,6 +56,11 @@ Page({
   getIndexGroomList: function () {
     var that = this;
     getGroomList(that.data.type).then(res=>{
+      if(app.globalData.isLog){
+        res.data.list = brokerageCalcuHandle(res.data.list)
+      }
+
+      console.log(res.data.list);
       that.setData({ imgUrls: res.data.banner, bastList: res.data.list })
     });
   },

@@ -1,6 +1,6 @@
 const app = getApp();
 
-import { getMenuList, getUserInfo} from '../../api/user.js';
+import { getMenuList, getUserInfo, getUserPhoneNumber} from '../../api/user.js';
 import { switchH5Login } from '../../api/api.js';
 import authLogin from '../../utils/autuLogin.js';
 import util from '../../utils/util.js';
@@ -39,7 +39,7 @@ Page({
     this.getMyMenus();
   },
   /**
-   * 
+   *
    * 获取个人中心图标
   */
   getMyMenus: function () {
@@ -55,8 +55,35 @@ Page({
   getUserInfo:function(){
     var that=this;
     getUserInfo().then(res=>{
+      // 设置全局用户信息
+      app.globalData.userInfo = res.data;
       that.setData({ userInfo: res.data, loginType: res.data.login_type, orderStatusNum: res.data.orderStatusNum});
     });
+  },
+
+  /**
+   * 获取用户手机号
+   */
+  getPhoneNumber: function (e) {
+    var that = this;
+
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      wx.getStorage({
+        key: 'cache_key',
+        success (res) {
+          var data = {
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+            cache_key: res.data,
+            uid:that.data.userInfo.uid
+          }
+          getUserPhoneNumber(data).then(res => {
+            app.globalData.userInfo.phone = res.data.phone;
+            that.setData({ userInfo: app.globalData.userInfo});
+          })
+        }
+      })
+    }
   },
   /**
    * 页面跳转
@@ -91,7 +118,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
   onShow:function(){
     let that = this;

@@ -1,8 +1,8 @@
 const app = getApp();
 
 import { getIndexData, getCoupons } from '../../api/api.js';
-import Util from '../../utils/util.js';
-
+import { brokerageCalcuHandle } from '../../utils/util.js';
+import { getUserInfo } from '../../api/user.js';
 Page({
   /**
    * 页面的初始数据
@@ -32,6 +32,7 @@ Page({
       'navbar':'0',
       'return':'0'
     },
+    userInfo:{},
     window: false,
   },
   /**
@@ -57,9 +58,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // if(app.globalData.isLog){
+    //   console.log('已登陆，可以获取用户信息')
+    //   this.getUserInfo()
+    // }
     this.getIndexConfig();
     if(app.globalData.isLog && app.globalData.token) this.get_issue_coupon_list();
   },
+
+  /*
+  * 获取用户信息
+  */
+ getUserInfo: function(){
+  var that=this;
+  getUserInfo().then(res=>{
+    console.log(res)
+    that.setData({ userInfo:res.data });
+  });
+ },
+
   get_issue_coupon_list:function(){
     var that = this;
     getCoupons({page:1,limit:3}).then(res=>{
@@ -70,6 +87,13 @@ Page({
   getIndexConfig:function(){
     var that = this;
     getIndexData().then(res=>{
+      if(app.globalData.isLog){
+        res.data.info.bastList = brokerageCalcuHandle(res.data.info.bastList)
+        res.data.info.firstList = brokerageCalcuHandle(res.data.info.firstList)
+        res.data.likeInfo = brokerageCalcuHandle(res.data.likeInfo)
+        res.data.benefit = brokerageCalcuHandle(res.data.benefit)
+      }
+
       that.setData({
         imgUrls: res.data.banner,
         menus: res.data.menus,

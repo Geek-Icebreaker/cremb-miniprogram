@@ -1,7 +1,7 @@
 // pages/member-center/index.js
 import { userLevelGrade, userLevelTask, userLevelDetection } from '../../api/user.js';
 import { getProductHot } from '../../api/store.js';
-
+import { brokerageCalcuHandle } from '../../utils/util.js';
 const app=getApp();
 Page({
 
@@ -53,12 +53,13 @@ Page({
   get_host_product: function () {
     var that = this;
     getProductHot().then(res=>{
+      res.data = brokerageCalcuHandle(res.data)
       that.setData({ host_product: res.data });
     });
   },
   /**
    * 会员切换
-   * 
+   *
   */
   bindchange(e) {
     var index = e.detail.current
@@ -89,7 +90,7 @@ Page({
   },
   /**
    * 获取会员等级
-   * 
+   *
   */
   getVipList:function(){
     var that=this;

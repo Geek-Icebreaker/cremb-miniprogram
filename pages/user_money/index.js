@@ -2,7 +2,7 @@
 
 import { getProductHot } from '../../api/store.js';
 import { getUserInfo, userActivity } from '../../api/user.js';
-
+import { brokerageCalcuHandle }  from '../../utils/util'
 const app=getApp();
 
 Page({
@@ -43,8 +43,8 @@ Page({
   getUserInfo:function(){
     var that=this;
     getUserInfo().then(res=>{
-      that.setData({ 
-        userInfo: res.data, 
+      that.setData({
+        userInfo: res.data,
         recharge_switch: res.data.recharge_switch
       });
     });
@@ -64,6 +64,7 @@ Page({
   get_host_product:function(){
     var that=this;
     getProductHot().then(res=>{
+      res.data = brokerageCalcuHandle(res.data)
       that.setData({ host_product: res.data });
     })
   },

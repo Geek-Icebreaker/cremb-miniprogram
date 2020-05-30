@@ -7,7 +7,7 @@
 .productList .nav{height:86rpx;color:#454545;position:fixed;left:0;width:100%;font-size:28rpx;background-color:#fff;}
 .productList .nav .item{width:25%;text-align:center;}
 .productList .nav .item.font-color{font-weight:bold;}
-.productList .nav .item image{width:15rpx;height:19rpx;margin-left:10rpx;} 
+.productList .nav .item image{width:15rpx;height:19rpx;margin-left:10rpx;}
 .productList .list{padding:0 20rpx;margin-top:172rpx;}
 .productList .list.on{background-color:#fff;border-top:1px solid #f6f6f6;}
 .productList .list .item{width:345rpx;margin-top:20rpx;background-color:#fff;border-radius:10rpx;}
@@ -21,6 +21,7 @@
 .productList .list .item .text .money{font-size:26rpx;font-weight:bold;margin-top:8rpx;}
 .productList .list .item .text .money.on{margin-top:50rpx;}
 .productList .list .item .text .money .num{font-size:34rpx;}
+.productList .list .item .text .money .brokerage-money{font-size:22rpx;color:black;font-weight:normal;padding: 5rpx;margin:-2rpx 0 0 15rpx;background-color: yellow;}
 .productList .list .item .text .vip{font-size:22rpx;color:#aaa;margin-top:7rpx;}
 .productList .list .item .text .vip.on{margin-top:12rpx;}
 .productList .list .item .text .vip .vip-money{font-size:24rpx;color:#282828;font-weight:bold;}

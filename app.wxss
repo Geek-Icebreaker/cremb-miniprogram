@@ -26,6 +26,9 @@ view{box-sizing:border-box;}
 .acea-row.row-center-wrapper{align-items:center;justify-content:center;}
 .acea-row.row-between-wrapper{align-items:center;justify-content:space-between;}
 .font-color{color:#fc4141!important;}
+.font-color-yellow{color:yellow!important;}
+
+/*.brokerage_price{font-size:22rpx;color:black;font-weight:normal;padding: 5rpx;margin:-2rpx 0 0 15rpx;background-color: yellow;}*/
 .bg-color{background-color:#e93323!important;}
 .icon-color{color:#ff3c2b;}
 .cart-color{color:#ff3700!important;border:1px solid #ff3700!important;}
@@ -44,7 +47,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {font-size:35rpx;}
 button{padding:0;margin:0;line-height:normal;background-color:#fff;}
 button::after{border:0;}
 @keyframes load
-        {   
+        {
             from {transform: rotate(0deg);}
             to {transform: rotate(360deg);}
         }
@@ -54,7 +57,7 @@ button::after{border:0;}
  .loading-list {
 	animation: load linear 1s infinite;
   font-size:40rpx;margin-right:22rpx;
-}  
+}
 .loading{width:100%;height:100rpx;line-height:100rpx;align-items:center;justify-content:center;position: relative;text-align:center;}
 .loading .line{position: absolute;width: 450rpx;left: 150rpx;top: 50rpx;height: 1px;border-top:1px solid #eee ;}
 .loading .text{position: relative;display: inline-block;padding: 0 20rpx;background: #fff;z-index: 2;color: #777;}

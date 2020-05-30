@@ -1,8 +1,8 @@
 import request from "./../utils/request.js";
 /**
- * 
+ *
  * 用户相关接口
- * 
+ *
 */
 
 /**
@@ -24,10 +24,18 @@ export function getMenuList() {
 
 /**
  * 获取用户信息
- * 
+ *
 */
 export function getUserInfo(){
   return request.get('user');
+}
+
+/**
+ * 获取用户手机号
+ *
+ */
+export function getUserPhoneNumber(data){
+  return request.post('user/phoneNumber',data);
 }
 
 /**
@@ -41,7 +49,7 @@ export function userEdit(data){
 
 /**
  * 会员等级列表
- * 
+ *
 */
 export function userLevelGrade(){
   return request.get('user/level/grade');
@@ -57,7 +65,7 @@ export function userLevelTask(id){
 
 /**
  * 检查用户是否可以成为会员
- * 
+ *
 */
 export function userLevelDetection(){
   return request.get('user/level/detection');
@@ -65,7 +73,7 @@ export function userLevelDetection(){
 
 /**
  * 获取分销海报图片
- * 
+ *
 */
 export function spreadBanner(){
   return request.get('spread/banner',{type:1});
@@ -81,9 +89,9 @@ export function spreadPeople(data){
 }
 
 /**
- * 
+ *
  * 推广佣金明细
- * @param int type 
+ * @param int type
  * @param object data
 */
 export function spreadCommission(type,data){
@@ -91,7 +99,7 @@ export function spreadCommission(type,data){
 }
 
 /**
- * 
+ *
  * 推广佣金/提现总和
  * @param int type
 */
@@ -100,7 +108,7 @@ export function spreadCount(type){
 }
 
 /**
- * 
+ *
  * 推广订单
  * @param object data
 */
@@ -118,7 +126,7 @@ export function extractCash(data){
 
 /**
  * 提现银行/提现最低金额
- * 
+ *
 */
 export function extractBank(){
   return request.get('extract/bank');
@@ -126,7 +134,7 @@ export function extractBank(){
 
 /**
  * 活动状态
- * 
+ *
 */
 export function userActivity(){
   return request.get('user/activity');
@@ -134,14 +142,14 @@ export function userActivity(){
 
 /**
  * 小程序充值
- * 
+ *
 */
 export function rechargeRoutine(data){
   return request.post('recharge/routine',data)
 }
 
 /**
- * 
+ *
  * 地址列表
  * @param object data
 */
@@ -159,7 +167,7 @@ export function setAddressDefault(id){
 
 /**
  * 获取默认地址
- * 
+ *
 */
 export function getAddressDefault(){
   return request.get('address/default');
@@ -167,7 +175,7 @@ export function getAddressDefault(){
 /**
  * 删除地址
  * @param int id
- * 
+ *
 */
 export function delAddress(id){
   return request.post('address/del',{id:id})
@@ -183,7 +191,7 @@ export function editAddress(data){
 
 /**
  * 获取单个地址
- * @param int id 
+ * @param int id
 */
 export function getAddressDetail(id){
   return request.get('address/detail/'+id);
@@ -191,7 +199,7 @@ export function getAddressDetail(id){
 
 /**
  * 设置用户分享
- * 
+ *
 */
 export function userShare(){
   return request.post('user/share');
@@ -199,7 +207,7 @@ export function userShare(){
 
 /**
  * 获取签到配置
- * 
+ *
 */
 export function getSignConfig(){
   return request.get('sign/config')
@@ -216,7 +224,7 @@ export function getSignList(data){
 /**
  * 签到列表(年月)
  * @param object data
- * 
+ *
 */
 export function getSignMonthList(data){
   return request.get('sign/month',data)

@@ -77,7 +77,7 @@ const formatNumber = n => {
  * @param string k 整体分割符 默认为：&
  * @param string p 单个分隔符 默认为：=
  * @return object
- * 
+ *
 */
 const getUrlParams = (param,k,p) => {
   if (typeof param!='string') return {};
@@ -167,7 +167,7 @@ const chekWxLogin = function()
               });
             }
           })
-         
+
         }
       },
       fail(res) {
@@ -179,7 +179,7 @@ const chekWxLogin = function()
 
 
 /**
- * 
+ *
  * 授权过后自动登录
 */
 const autoLogin = function()
@@ -297,7 +297,7 @@ const Tips= function (opt, to_url) {
       }
 
     }else if(typeof to_url == 'function'){
-      setTimeout(function () { 
+      setTimeout(function () {
         to_url && to_url();
       }, endtime);
     }else{
@@ -313,8 +313,8 @@ const Tips= function (opt, to_url) {
 /*
 * 单图上传
 * @param object opt
-* @param callable successCallback 成功执行方法 data 
-* @param callable errorCallback 失败执行方法 
+* @param callable successCallback 成功执行方法 data
+* @param callable errorCallback 失败执行方法
 */
 const uploadImageOne=function (opt, successCallback, errorCallback) {
   if (typeof opt === 'string') {
@@ -325,11 +325,11 @@ const uploadImageOne=function (opt, successCallback, errorCallback) {
   var count = opt.count || 1, sizeType = opt.sizeType || ['compressed'], sourceType = opt.sourceType || ['album', 'camera'],
     is_load = opt.is_load || true, uploadUrl = opt.url || '', inputName = opt.name || 'pics';
   wx.chooseImage({
-    count: count,  //最多可以选择的图片总数  
-    sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有  
-    sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有  
+    count: count,  //最多可以选择的图片总数
+    sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
+    sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
     success: function (res) {
-      //启动上传等待中...  
+      //启动上传等待中...
       wx.showLoading({
         title: '图片上传中',
       });
@@ -372,7 +372,7 @@ const uploadImageOne=function (opt, successCallback, errorCallback) {
  * @param int index 需要移除的数组的键值
  * @param string | int 值
  * @return array
- * 
+ *
 */
 const ArrayRemove= (array,index,value) =>{
   const valueArray=[];
@@ -391,7 +391,7 @@ const ArrayRemove= (array,index,value) =>{
   * 生成海报获取文字
   * @param string text 为传入的文本
   * @param int num 为单行显示的字节长度
-  * @return array 
+  * @return array
  */
 const textByteLength = (text, num) =>{
   let strLength = 0;
@@ -426,8 +426,8 @@ const textByteLength = (text, num) =>{
  * @param string store_name 素材文字
  * @param string price 价格
  * @param function successFn 回调函数
- * 
- * 
+ *
+ *
 */
 const PosterCanvas = (arr2, store_name, price,successFn) =>{
   wx.showLoading({ title: '海报生成中', mask: true });
@@ -435,7 +435,7 @@ const PosterCanvas = (arr2, store_name, price,successFn) =>{
   ctx.clearRect(0, 0, 0, 0);
   /**
    * 只能获取合法域名下的图片信息,本地调试无法获取
-   * 
+   *
   */
   wx.getImageInfo({
     src: arr2[0],
@@ -523,6 +523,58 @@ const AnimationNumber = (BaseNumber,ChangeNumber,that,name) => {
 }
 
 
+/**
+ * 佣金计算处理
+ * @param data
+ */
+const brokerageCalcuHandle = function(data)
+{
+  //是否为分销员
+  var is_promoter = getApp().globalData.userInfo.is_promoter == 1 ? true : false
+
+  //分销员类型 是指定分销还是人人分销
+  var promoter_statu = getApp().globalData.userInfo.statu
+
+  //根据分销类型来计算分销员级别，佣金比例
+  /*if(promoter_statu == 1){
+    //分销员级别 是一级分销员还是二级分销员
+    var promoter_level = getApp().globalData.userInfo.spread_uid == 0 ? 1 : 2
+
+    //佣金比列
+    var brokerage_rate = promoter_level == 1 ? getApp().globalData.userInfo.store_brokerage_ratio : getApp().globalData.userInfo.store_brokerage_two
+  }*/
+
+  var brokerage_rate = getApp().globalData.userInfo.store_brokerage_ratio;
+
+  //佣金
+  var brokerage_price;
+
+  //利润
+  var profit;
+
+  //判断是否是分销员
+  if(is_promoter){
+    if (Array.isArray(data)) {
+      for(var item in data){
+        profit = getApp().globalData.userInfo.vip ? data[item]['vip_price'] - data[item]['cost'] : data[item]['price'] - data[item]['cost'];
+
+        if (profit <= 0) {
+          brokerage_price = 0;
+        }else{
+          brokerage_price = (profit / 100 * brokerage_rate).toFixed(2);
+          data[item]['brokerage_price'] = brokerage_price;
+        }
+      }
+    }else{
+      profit = getApp().globalData.userInfo.vip ? data['vip_price'] - data['cost'] : data['price'] - data['cost'];
+
+      brokerage_price = (profit / 100 * brokerage_rate).toFixed(2);
+      data['brokerage_price'] = brokerage_price;
+    }
+    return data
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   $h:$h,
@@ -537,6 +589,7 @@ module.exports = {
   getCodeLogin: getCodeLogin,
   checkLogin: checkLogin,
   wxgetUserInfo: wxgetUserInfo,
+  brokerageCalcuHandle:brokerageCalcuHandle,
   autoLogin: autoLogin,
   logout: logout
 }

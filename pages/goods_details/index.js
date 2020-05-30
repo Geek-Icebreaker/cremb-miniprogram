@@ -59,10 +59,11 @@ Page({
     systemStore:{},//门店信息
     good_list:[],
     isDown:true,
+    userInfo:{},
   },
   /**
    * 登录后加载
-   * 
+   *
   */
   onLoadFun:function(e){
     this.setData({ isLog:true});
@@ -81,12 +82,13 @@ Page({
   getUserInfo: function(){
     var that=this;
     getUserInfo().then(res=>{
+      //that.setData({ userInfo:res.data });
       that.setData({ 'sharePacket.isState': res.data.is_promoter ? false : true, uid: res.data.uid });
     });
   },
   /**
    * 购物车数量加和数量减
-   * 
+   *
   */
   ChangeCartNum:function(e){
     //是否 加|减
@@ -123,7 +125,7 @@ Page({
   },
   /**
    * 属性变动赋值
-   * 
+   *
   */
   ChangeAttr:function(e){
     var values = e.detail;
@@ -189,7 +191,7 @@ Page({
   },
   /**
    * 获取产品详情
-   * 
+   *
   */
   getGoodsDetails:function(){
     var that=this;
@@ -197,11 +199,21 @@ Page({
       var storeInfo = res.data.storeInfo;
       var good_list = res.data.good_list || [];
       var count = Math.ceil(good_list.length / 6);
+
+      if(app.globalData.isLog){
+        console.log(storeInfo)
+        console.log('获取产品相亲')
+        storeInfo = util.brokerageCalcuHandle(storeInfo)
+        good_list = util.brokerageCalcuHandle(good_list)
+      }
+
       var goodArray= new Array();
       for (var i = 0; i < count;i++){
         var list = good_list.slice(i * 6, 6);
         if (list.length) goodArray.push({list:list});
       }
+
+      console.log(goodArray)
       that.setData({
         storeInfo: storeInfo,
         reply: res.data.reply ? [res.data.reply] : [],
@@ -239,7 +251,7 @@ Page({
   },
   /**
    * 打开地图
-   * 
+   *
   */
   showMaoLocation:function(){
     if (!this.data.systemStore.latitude || !this.data.systemStore.longitude) return app.Tips({title:'缺少经纬度信息无法查看地图！'});
@@ -256,7 +268,7 @@ Page({
   },
   /**
    * 默认选中属性
-   * 
+   *
   */
   DefaultSelect:function(){
     var productAttr = this.data.productAttr, storeInfo = this.data.storeInfo;
@@ -303,7 +315,7 @@ Page({
   },
   /**
    * 获取优惠券
-   * 
+   *
   */
   getCouponList(){
     var that=this;
@@ -318,9 +330,9 @@ Page({
       });
     });
   },
-  /** 
-   * 
-   * 
+  /**
+   *
+   *
   * 收藏商品
   */
   setCollect:function(){
@@ -371,7 +383,7 @@ Page({
   },
   /**
    * 打开属性加入购物车
-   * 
+   *
   */
   joinCart:function(e){
     var formId = e.detail.formId;
@@ -392,15 +404,15 @@ Page({
     //打开属性
     if (this.data.attrValue){
       //默认选中了属性，但是没有打开过属性弹窗还是自动打开让用户查看默认选中的属性
-      this.setData({ 'attribute.cartAttr': !this.data.isOpen ? true : false }) 
+      this.setData({ 'attribute.cartAttr': !this.data.isOpen ? true : false })
     }else{
-      if (this.data.isOpen) 
-        this.setData({ 'attribute.cartAttr': true }) 
-      else 
+      if (this.data.isOpen)
+        this.setData({ 'attribute.cartAttr': true })
+      else
         this.setData({ 'attribute.cartAttr': !this.data.attribute.cartAttr});
     }
     //只有关闭属性弹窗时进行加入购物车
-    if (this.data.attribute.cartAttr === true && this.data.isOpen == false) return this.setData({ isOpen: true }); 
+    if (this.data.attribute.cartAttr === true && this.data.isOpen == false) return this.setData({ isOpen: true });
     //如果有属性,没有选择,提示用户选择
     if (this.data.productAttr.length && productSelect === undefined && this.data.isOpen==true) return app.Tips({title:'请选择属性'});
     postCartAdd({
@@ -463,7 +475,7 @@ Page({
   },
   /**
    * 分享打开和关闭
-   * 
+   *
   */
   listenerActionSheet: function () {
     if (app.globalData.isLog === false)
@@ -504,7 +516,7 @@ Page({
   /**
    * 获取产品分销二维码
    * @param function successFn 下载完成回调
-   * 
+   *
   */
   downloadFilePromotionCode: function (successFn) {
     var that = this;

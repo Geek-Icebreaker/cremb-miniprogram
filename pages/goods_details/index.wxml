@@ -8,6 +8,8 @@
         <text class='num'>{{storeInfo.price}}</text>
         <text class='vip-money' wx:if="{{storeInfo.vip_price && storeInfo.vip_price > 0}}">￥{{storeInfo.vip_price}}</text>
         <image wx:if="{{storeInfo.vip_price && storeInfo.vip_price > 0}}" src="/images/vip.png"></image>
+        <text class='brokerage-money' wx:if='{{storeInfo.brokerage_price}}'>赚￥{{storeInfo.brokerage_price}}</text>
+
       </view>
       <view class='iconfont icon-fenxiang' bindtap='listenerActionSheet'></view>
     </view>
@@ -85,6 +87,12 @@
                   </view>
                   <view class="name line1">{{val.store_name}}</view>
                   <view class="money font-color">¥{{val.price}}</view>
+                  <!--<view class="money font-color" wx:if="{{val.brokerage_price}}">赚¥ {{val.brokerage_price}}</view>-->
+
+                  <view class='panel-bottom' wx:if="{{val.brokerage_price}}">
+                    <text class="brokerage_price">赚￥ {{val.brokerage_price}}</text>
+                  </view>
+
                 </navigator>
               </view>
             </view>

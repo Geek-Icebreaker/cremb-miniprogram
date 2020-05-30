@@ -11,3 +11,4 @@
 .recommend .recommendList .item .name{font-size:28rpx;color:#282828;margin-top:20rpx;}
 .recommend .recommendList .item .money{font-size:20rpx;margin-top:8rpx;}
 .recommend .recommendList .item .money .num{font-size:28rpx;}
+.panel-bottom{width: 100%;height: 40rpx;background-color: orangered;text-align: center;color: white}

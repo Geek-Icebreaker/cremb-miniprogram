@@ -63,7 +63,8 @@ margin-left:10rpx;}
 .index .hotList .list .item .pictrue image{width:100%;height:100%;border-radius:10rpx;}
 .index .hotList .list .item .pictrue .numPic{width:50rpx;height:50rpx;border-radius:50%;position:absolute;top:7rpx;left:7rpx;}
 .index .hotList .list .item .name{font-size:26rpx;color:#282828;margin-top:12rpx;}
-.index .hotList .list .item .money{font-size:20rpx;font-weight:bold;margin-top:4rpx;}
+.index .hotList .list .item .money{font-size:20rpx;font-weight:bold;margin-top:4rpx;text-align: center}
+.index .panel-bottom{width: 100%;height: 40rpx;background-color: orangered;text-align: center;color: white}
 .index .hotList .list .item .money .num{font-size:28rpx;}
 .index .adver{width:100%;height:180rpx;margin-top:37rpx;}
 .index .adver image{width:100%;height:100%;}

@@ -8,6 +8,7 @@
 .goodList .item .text{font-size:30rpx;color:#222;width:489rpx;}
 .goodList .item .text .money{font-size:26rpx;font-weight:bold;margin-top:50rpx;}
 .goodList .item .text .money .num{font-size:34rpx;}
+.goodList .item .text .money .num2{font-size:22rpx;color:black;font-weight:normal;padding: 5rpx;margin:-2rpx 0 0 15rpx;background-color: yellow;}
 .goodList .item .text .vip-money{font-size:24rpx;color:#282828;font-weight:bold;margin-top:15rpx;}
 .goodList .item .text .vip-money image{width:46rpx;height:21rpx;margin-left:5rpx;}
 .goodList .item .text .vip-money .num{font-size:22rpx;color:#aaa;font-weight:normal;margin:-2rpx 0 0 22rpx;}

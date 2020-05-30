@@ -8,6 +8,10 @@ Component({
     bastList: {
       type: Object,
       value: [],
+    },
+    userInfo: {
+      type: Object,
+      value: [],
     }
   },
   data: {

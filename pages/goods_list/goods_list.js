@@ -1,4 +1,5 @@
 import { getProductslist, getProductHot } from '../../api/store.js';
+import { brokerageCalcuHandle } from "../../utils/util";
 
 
 const app = getApp();
@@ -40,10 +41,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ 
-      ['where.sid']: options.sid || 0, 
-      title: options.title || '', 
-      ['where.keyword']: options.searchValue || '', 
+    this.setData({
+      ['where.sid']: options.sid || 0,
+      title: options.title || '',
+      ['where.keyword']: options.searchValue || '',
       navH: app.globalData.navHeight
     });
     this.get_product_list();
@@ -131,6 +132,12 @@ Page({
     getProductslist(that.data.where).then(res=>{
       let list = res.data;
       let productList = app.SplitArray(list, that.data.productList);
+
+
+      if(app.globalData.isLog){
+        productList = brokerageCalcuHandle(productList)
+      }
+
       let loadend = list.length < that.data.where.limit;
       that.setData({
         loadend: loadend,

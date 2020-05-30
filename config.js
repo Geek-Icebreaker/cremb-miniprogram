@@ -1,6 +1,7 @@
 module.exports = {
   // 请求域名 格式： https://您的域名
-  HTTP_REQUEST_URL:'',
+  //HTTP_REQUEST_URL:'https://bcd.lhxxkj.cn',
+  HTTP_REQUEST_URL:'http://test.quduo.xin:8888',
   // Socket链接 暂不做配置
   WSS_SERVER_URL:'',
   // 请求头

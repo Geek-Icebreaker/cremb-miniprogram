@@ -10,7 +10,8 @@
                <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
             </view>
             <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
-            <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view>
+<!--            <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view>-->
+             <view wx:else><button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机号</button></view>
          </view>
       </view>
       <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
@@ -92,6 +93,6 @@
       </view>
    </view>
    <image src='/images/support.png' class='support'></image>
-</view> 
+</view>
 
 <authorize bind:onLoadFun='onLoadFun' isGoIndex='{{isGoIndex}}' iShidden="{{iShidden}}" isAuto="{{isAuto}}"></authorize>
