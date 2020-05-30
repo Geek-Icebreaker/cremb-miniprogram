@@ -38,3 +38,4 @@
 .switchWindow .switchBnt.cancelBnt{background-color:#fff;color:#999;background-image:none;margin-top:10rpx;}
 .order-status-num {min-width: 18rpx;background-color: #fff;color: #ee5a52;border-radius: 15rpx;position: absolute;right: -5rpx;top: -16rpx;font-size: 23rpx;padding: 0 5rpx; border: 1rpx solid #ee5a52;}
 .user .binding{padding: 2rpx 18rpx; background-color: #ca1f10; border-radius: 50px;font-size: 22rpx;border: 1px solid #e8695e;color: #ffffff;}
+.user .small-btn{padding: 2rpx 18rpx; background-color: #ca1f10; border-radius: 50px;font-size: 22rpx;border: 1px solid #e8695e;color: #ffffff;}
