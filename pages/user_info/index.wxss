@@ -21,3 +21,4 @@
 .personal-data .list .item .input .iconfont{font-size:35rpx;}
 .personal-data .modifyBnt{font-size:32rpx;color:#fff;width:690rpx;height:90rpx;border-radius:50rpx;text-align:center;line-height:90rpx;margin:76rpx auto 0 auto;}
 .personal-data .logOut{font-size:32rpx;text-align:center;width:690rpx;height:90rpx;border-radius:45rpx;margin:30rpx auto 0 auto;}
+.personal-data .small-btn{padding: 2rpx 18rpx; background-color: #ca1f10; border-radius: 50px;font-size: 22rpx;border: 1px solid #e8695e;color: #ffffff;}

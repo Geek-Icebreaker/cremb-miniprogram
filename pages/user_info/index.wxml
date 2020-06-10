@@ -6,7 +6,7 @@
       <view class="wrapList">
         <view
           class="item acea-row row-between-wrapper {{item.uid === userInfo.uid ? 'on' : ''}}"
-          wx:for="{{switchUserInfo}}" 
+          wx:for="{{switchUserInfo}}"
           wx:key
           bindtap='switchAccounts'
           data-index='{{index}}'
@@ -45,10 +45,13 @@
         </view>
         <view class='item acea-row row-between-wrapper'>
           <view>手机号码</view>
-          <navigator url="/pages/user_phone/index" hover-class="none" class="input" wx:if="{{!userInfo.phone}}">
+          <!--<navigator url="/pages/user_phone/index" hover-class="none" class="input" wx:if="{{!userInfo.phone}}">
             点击绑定手机号<text class="iconfont icon-xiangyou"></text>
-          </navigator>
-          <view class='input acea-row row-between-wrapper' wx:else>
+          </navigator>-->
+            <view wx:if="{{!userInfo.phone}}">
+                <button class='small-btn' open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">绑定手机号</button>
+            </view>
+            <view class='input acea-row row-between-wrapper' wx:else>
             <input type='text' disabled='true' name='phone' value='{{userInfo.phone}}' class='id'></input>
             <text class='iconfont icon-suozi'></text>
           </view>
@@ -58,7 +61,7 @@
           <view class='input acea-row row-between-wrapper'>
             <input type='text' value='{{userInfo.uid}}' disabled='true' class='id'></input>
             <text class='iconfont icon-suozi'></text>
-          </view> 
+          </view>
         </view>
         <view class='item acea-row row-between-wrapper'>
           <view>权限设置</view>

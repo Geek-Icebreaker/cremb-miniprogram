@@ -1,7 +1,8 @@
-import { getUserInfo, userEdit} from '../../api/user.js';
+import { getUserInfo, userEdit, getUserPhoneNumber } from '../../api/user.js';
 import { setFormId, switchH5Login } from '../../api/api.js';
 import authLogin from '../../utils/autuLogin.js';
 import util from '../../utils/util.js';
+//import {getUserPhoneNumber} from "../../api/user";
 
 const app = getApp();
 
@@ -32,7 +33,7 @@ Page({
         console.log(res.authSetting)
       }
     });
-  }, 
+  },
   switchAccounts: function (e) {
     let index = e.currentTarget.dataset.index, userInfo = this.data.switchUserInfo[index] , that = this;
     that.setData({ userIndex: index });
@@ -71,7 +72,7 @@ Page({
 
   /**
    * 退出登录
-   * 
+   *
   */
   outLogin:function(){
     if (this.data.loginType == 'h5'){
@@ -96,6 +97,10 @@ Page({
   onLoad: function (options) {
 
   },
+
+  /**
+   * 获取用户手机号
+   */
   getPhoneNumber:function(e){
     var detail = e.detail, cache_key = wx.getStorageSync('cache_key'),that=this;
     if (detail.errMsg =='getPhoneNumber:ok'){
@@ -105,8 +110,17 @@ Page({
         return false;
       }
 
-    
-      
+      var data = {
+        encryptedData: e.detail.encryptedData,
+        iv: e.detail.iv,
+        cache_key: cache_key,
+        uid:that.data.userInfo.uid
+      }
+      getUserPhoneNumber(data).then(res => {
+        app.globalData.userInfo.phone = res.data.phone;
+        that.setData({ userInfo: app.globalData.userInfo});
+      })
+
     }else{
       app.Tips({ title:'取消授权'});
     }
@@ -129,7 +143,7 @@ Page({
 
   /**
   * 上传文件
-  * 
+  *
  */
   uploadpic: function () {
     var that = this;
@@ -158,6 +172,6 @@ Page({
     });
   },
 
-  
+
 
 })
